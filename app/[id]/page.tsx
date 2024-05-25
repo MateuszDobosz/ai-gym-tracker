@@ -8,7 +8,7 @@ export default async function TrainingPage({
   const training = await getExercisePerformance(params.id);
 
   return (
-    <div className="max-w-screen-xl m-auto min-h-screen py-20">
+    <div className="max-w-screen-xl m-auto min-h-screen px-20">
       <div className="chat chat-start py-28 max-w-screen-xl m-auto">
         <div className="chat-image avatar">
           <div className="w-10 rounded-full">
@@ -21,7 +21,7 @@ export default async function TrainingPage({
         <div className="chat-bubble">{training.assessment}</div>
       </div>
 
-      <div className="stats shadow w-full">
+      <div className="stats shadow md:stats-horizontal stats-vertical w-full">
         <div className="stat place-items-center">
           <div className="stat-title">Score</div>
           <div className="stat-value">{training.points}/100</div>
@@ -36,6 +36,11 @@ export default async function TrainingPage({
           <div className="stat-desc text-secondary">
             Time you should set aside for rest
           </div>
+        </div>
+        <div className="stat place-items-center">
+          <div className="stat-title">Total weight lifted</div>
+          <div className="stat-value">{training.weightLifted} kg</div>
+          <div className="stat-desc">So strong!</div>
         </div>
       </div>
     </div>

@@ -61,8 +61,8 @@ export const getExercisePerformance = async (id: string) => {
     messages: [
       {
         role: "user",
-        content: `You are a gym training expert tasked to evaluate training, you must give a score of this training in 0-100 points, how many hours are needed to rest  and give an assessment of the training. here is training: ${exsString}.
-        Use JSON format with the keys “points”, “hoursToRest”, and “assessment”.
+        content: `You are a gym training expert tasked to evaluate training, you must give a score of this training in 0-100 points, how many hours are needed to rest  and give an assessment of the training.Weight is in KGs. Here is training: ${exsString}.
+        Use JSON format with the keys “points”, “hoursToRest”, "weightLifted" and “assessment”. I expect only JSON in your answer
         `,
       },
     ],
