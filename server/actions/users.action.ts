@@ -26,10 +26,9 @@ export const findUserByEmail = async (email: string) => {
   return user[0];
 };
 
-export const createSafeUser = actionClient
-  .schema(signUpSchema)
-  .action(async ({ parsedInput }) => {
-    const { email, password } = parsedInput;
+export const createSafeUser = actionClient(
+  signUpSchema,
+  async ({ email, password }) => {
     const userFound = await findUserByEmail(email);
     if (userFound) return null;
     // const hashPassword = await saltAndHashPassword(password);
@@ -38,4 +37,5 @@ export const createSafeUser = actionClient
       .values({ email, password })
       .returning({ insertedId: users.id });
     return user[0];
-  });
+  },
+);

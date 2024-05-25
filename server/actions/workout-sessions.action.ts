@@ -6,22 +6,21 @@ import { actionClient } from "@/lib/safe-action";
 import { addWorkoutSessionSchema, finishWorkoutSessionSchema } from "@/lib/zod";
 import { eq } from "drizzle-orm";
 
-export const createSafeWorkoutSession = actionClient
-  .schema(addWorkoutSessionSchema)
-  .action(async ({ parsedInput }) => {
-    const { userId } = parsedInput;
+export const createSafeWorkoutSession = actionClient(
+  addWorkoutSessionSchema,
+  async ({ userId }) => {
     const workoutSession = await db
       .insert(workoutSessions)
       .values({ userId })
       .returning();
 
     return workoutSession[0];
-  });
+  },
+);
 
-export const finishSafeWorkoutSession = actionClient
-  .schema(finishWorkoutSessionSchema)
-  .action(async ({ parsedInput }) => {
-    const { sessionId } = parsedInput;
+export const finishSafeWorkoutSession = actionClient(
+  finishWorkoutSessionSchema,
+  async ({ sessionId }) => {
     const updatedId = await db
       .update(workoutSessions)
       .set({
@@ -30,4 +29,5 @@ export const finishSafeWorkoutSession = actionClient
       .where(eq(workoutSessions.id, sessionId))
       .returning({ id: workoutSessions.id });
     return updatedId[0];
-  });
+  },
+);

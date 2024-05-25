@@ -48,6 +48,11 @@
   dependencies:
     regenerator-runtime "^0.14.0"
 
+"@decs/typeschema@^0.12.2":
+  version "0.12.2"
+  resolved "https://registry.yarnpkg.com/@decs/typeschema/-/typeschema-0.12.2.tgz#d170bef9ac84a2104bd277f9a2b831fc26c2b76a"
+  integrity sha512-PA8uAH/Xfsa5X2UNNSnb5i6vB8qWZywp4+d2U8kNMCO7qwirYRPbFCHwIfWBJyURh4rULn3Ey+VBADLcK2xxaQ==
+
 "@esbuild-kit/core-utils@^3.3.2":
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/@esbuild-kit/core-utils/-/core-utils-3.3.2.tgz#186b6598a5066f0413471d7c4d45828e399ba96c"
@@ -582,13 +587,6 @@
   version "0.13.2"
   resolved "https://registry.yarnpkg.com/@typeschema/core/-/core-0.13.2.tgz#c9bb572a67918a8a3f615023d37e0bdb9705097a"
   integrity sha512-pAt0MK249/9szYaoPuvzhSfOd3smrLhhwCCpUNB4onX32mRx5F3lzDIveIYGQkLYRq58xOX5sjoW+n72f/MLLw==
-
-"@typeschema/main@^0.13.9":
-  version "0.13.9"
-  resolved "https://registry.yarnpkg.com/@typeschema/main/-/main-0.13.9.tgz#3dc075c305a35c27c384845ab8c0b6e92078fec7"
-  integrity sha512-Z6yFaf2dLoqvuSNIeUelek9XI8T5Rog/NXHBMwV6KLhQCT0lQPBtmZSXAdW6EzFaqn1najhQEcirBqjWiFXiig==
-  dependencies:
-    "@typeschema/core" "0.13.2"
 
 "@typeschema/zod@^0.13.3":
   version "0.13.3"
@@ -2586,12 +2584,14 @@ next-auth@^5.0.0-beta.18:
   dependencies:
     "@auth/core" "0.31.0"
 
-next-safe-action@^7.0.0-next.44:
-  version "7.0.0-next.44"
-  resolved "https://registry.yarnpkg.com/next-safe-action/-/next-safe-action-7.0.0-next.44.tgz#4d5cfe947612895bd7ce1c19c8ce656ce0be2bb2"
-  integrity sha512-/WTqYIVXf9c5AP0i9HfIfYVMmMU6lLZ2DM0O9J1/9QtECWz07WhmuXWrNa28kYZdTHBl/qUrjh5iCYEV4VzY4g==
+next-safe-action@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/next-safe-action/-/next-safe-action-6.2.0.tgz#3961c4e14502c2e492184d4d3359ea0f03498c3e"
+  integrity sha512-gssUs3OLoNjLXZalrQaly38s/mUtXsIcKWGIK3jFkW8GHl0/Xhq+3G8yEEyObET2YlYqUj79K+mH3iTNBLDcMw==
   dependencies:
-    "@typeschema/main" "^0.13.9"
+    "@decs/typeschema" "^0.12.2"
+  optionalDependencies:
+    zod "^3.22.4"
 
 next-tick@1, next-tick@^1.1.0:
   version "1.1.0"
@@ -3664,7 +3664,7 @@ yocto-queue@^0.1.0:
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
-zod@^3.20.2, zod@^3.23.8:
+zod@^3.20.2, zod@^3.22.4, zod@^3.23.8:
   version "3.23.8"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.23.8.tgz#e37b957b5d52079769fb8097099b592f0ef4067d"
   integrity sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==

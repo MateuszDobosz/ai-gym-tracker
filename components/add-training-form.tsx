@@ -15,7 +15,7 @@ export const AddTrainingForm = () => {
   const router = useRouter();
   const addWorkoutSessionAction = useAction(createSafeWorkoutSession, {
     onSuccess(data) {
-      setWorkoutId(data.data.id);
+      setWorkoutId(data.id);
     },
     onError(error) {
       console.log(error);
@@ -23,7 +23,7 @@ export const AddTrainingForm = () => {
   });
   const findOrAddExerciseAction = useAction(findOrCreateSafeExercise, {
     onSuccess(data) {
-      setExerciseId(data.data.id);
+      setExerciseId(data.id);
     },
     onError(error) {
       console.log(error);
@@ -33,7 +33,6 @@ export const AddTrainingForm = () => {
     createSafeExercisePerformance,
     {
       onSuccess(data) {
-        console.log(data);
         setExerciseReps(0);
         setExerciseWeight(0);
       },
@@ -45,7 +44,7 @@ export const AddTrainingForm = () => {
 
   const finishWorkoutSessionAction = useAction(finishSafeWorkoutSession, {
     onSuccess(data) {
-      router.push(`/${data.data.id}`);
+      router.push(`/${data.id}`);
     },
     onError(error) {
       console.log(error);
@@ -79,13 +78,8 @@ export const AddTrainingForm = () => {
     finishWorkoutSessionAction.execute({ sessionId: workoutId });
   };
 
-  const handleRedirect = () => {
-    router.push(`/${workoutId}`);
-  };
-
   return (
     <div className="flex flex-col gap-4">
-      <h1>{workoutId}</h1>
       <button
         className="btn btn-primary"
         disabled={
@@ -169,10 +163,12 @@ export const AddTrainingForm = () => {
         disabled={!workoutId}
         onClick={() => handleFinishOfWorkout()}
       >
-        {/* {finishWorkoutSessionAction.status === "executing"
-          ? "Loading"
-          : "Finish training"} */}
-        {!finishWorkoutSessionAction.isIdle ? "Loading" : "Finish training!"}
+        {/* Finish */}
+        {finishWorkoutSessionAction.status === "idle" ? (
+          "Finish training!"
+        ) : (
+          <span className="loading loading-dots loading-xs"></span>
+        )}
       </button>
     </div>
   );

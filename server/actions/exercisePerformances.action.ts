@@ -15,42 +15,17 @@ import {
 import { WorkoutResult } from "@/types/workout-result";
 import { eq } from "drizzle-orm";
 
-export const createSafeExercisePerformance = actionClient
-  .schema(addExercisePerformanceSchema)
-  .action(async ({ parsedInput }) => {
-    console.log(parsedInput);
-    const { exerciseId, sessionId, weight, reps } = parsedInput;
+export const createSafeExercisePerformance = actionClient(
+  addExercisePerformanceSchema,
+  async ({ exerciseId, sessionId, weight, reps }) => {
     const exercisePerformance = await db
       .insert(exercisePerformances)
       .values({ exerciseId, sessionId, weight, reps })
       .returning();
 
     return exercisePerformance[0];
-  });
-
-export const getSafeExercisePerformance = actionClient
-  .schema(workoutSessionIdSchema)
-  .action(async ({ parsedInput }) => {
-    const { sessionId } = parsedInput;
-    const exs = await db
-      .select()
-      .from(exercisePerformances)
-      .leftJoin(
-        workoutSessions,
-        eq(exercisePerformances.sessionId, workoutSessions.id),
-      )
-      .leftJoin(exercises, eq(exercisePerformances.exerciseId, exercises.id))
-      // .leftJoin(user,eq(workoutSession.userId,user.id))
-      .where(eq(exercisePerformances.sessionId, sessionId));
-    const normalizedExs = exs.map((exs) => {
-      return {
-        exercise: exs.exercises?.name,
-        reps: exs.exercisePerformances.reps,
-        weight: exs.exercisePerformances.weight,
-      };
-    });
-    console.log(normalizedExs);
-  });
+  },
+);
 
 export const getExercisePerformance = async (id: string) => {
   const exs = await db
@@ -93,5 +68,6 @@ export const getExercisePerformance = async (id: string) => {
     ],
   });
   const parsedMessage = JSON.parse(msg.content[0].text) as WorkoutResult;
+
   return parsedMessage;
 };

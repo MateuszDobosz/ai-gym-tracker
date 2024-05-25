@@ -1,5 +1,4 @@
 import { AddTrainingForm } from "@/components/add-training-form";
-import Link from "next/link";
 
 export default function AddTrainingPage() {
   return (
