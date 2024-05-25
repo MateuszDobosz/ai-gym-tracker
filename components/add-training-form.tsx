@@ -163,7 +163,6 @@ export const AddTrainingForm = () => {
         disabled={!workoutId}
         onClick={() => handleFinishOfWorkout()}
       >
-        {/* Finish */}
         {finishWorkoutSessionAction.status === "idle" ? (
           "Finish training!"
         ) : (

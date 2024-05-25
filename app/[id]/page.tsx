@@ -8,7 +8,7 @@ export default async function TrainingPage({
   const training = await getExercisePerformance(params.id);
 
   return (
-    <div className="max-w-screen-xl m-auto min-h-screen">
+    <div className="max-w-screen-xl m-auto min-h-screen py-20">
       <div className="chat chat-start py-28 max-w-screen-xl m-auto">
         <div className="chat-image avatar">
           <div className="w-10 rounded-full">
